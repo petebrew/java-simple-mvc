@@ -9,6 +9,7 @@
   <issueManagement>
   	<url>http://code.google.com/p/java-simple-mvc/issues/list</url>
   </issueManagement>
+  <packaging>jar</packaging>
   <licenses>
   	<license>
   		<name>The MIT License</name>
@@ -17,7 +18,15 @@
   </licenses>
   <scm>
   	<url>http://java-simple-mvc.googlecode.com/svn/trunk/</url>
+  	<connection>scm:svn:http://java-simple-mvc.googlecode.com/svn/trunk/</connection>
+  	<developerConnection>scm:svn:https://java-simple-mvc.googlecode.com/svn/trunk/</developerConnection>
   </scm>
+  <developers>
+  	<developer>
+  		<name>Daniel Murphy</name>
+  		<email>dmurphy10@me.com</email>
+  	</developer>
+  </developers>
   <build>
   	<plugins>
   		<plugin>
