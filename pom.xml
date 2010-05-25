@@ -4,7 +4,7 @@
   <artifactId>JavaSimpleMVC</artifactId>
   <version>0.1</version>
   <name>java-simple-mvc</name>
-  <description>A simple mvc framework for java application developers.</description>
+  <description>A simple mvc framework for java application and gui developers.</description>
   <url>http://code.google.com/p/java-simple-mvc/</url>
   <issueManagement>
   	<url>http://code.google.com/p/java-simple-mvc/issues/list</url>
@@ -23,8 +23,9 @@
   </scm>
   <developers>
   	<developer>
+  		<id>toucansam99</id>
   		<name>Daniel Murphy</name>
-  		<email>dmurphy10@me.com</email>
+  		<email>toucansam99@gmail.com</email>
   	</developer>
   </developers>
   <build>
@@ -63,4 +64,12 @@
   <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  
+  <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
