@@ -38,7 +38,7 @@ import java.beans.PropertyChangeSupport;
  * @see AbstractDirtyableModel
  * @author daniel
  */
-public abstract class AbstractModel implements IDirtyable, ICloneable{
+public abstract class AbstractModel implements ICloneable{
 	protected final PropertyChangeSupport propertyChangeSupport;
 	
     public AbstractModel(){
