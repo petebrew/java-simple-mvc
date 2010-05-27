@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.dmurph.mvc</groupId>
 	<artifactId>JavaSimpleMVC</artifactId>
-	<version>0.1.2-SNAPSHOT</version>
+	<version>0.1.1-SNAPSHOT</version>
 	<name>java-simple-mvc</name>
 	<description>A simple mvc framework for java application and gui developers.</description>
 	<url>http://code.google.com/p/java-simple-mvc/</url>
@@ -119,7 +119,7 @@
 
 	<distributionManagement>
 		<snapshotRepository>
-			<id>sonatype-nexus-snapshots</id>
+			<id>sonatype-nexus-snapshots2</id>
 			<name>Sonatype Nexus Snapshots</name>
 			<url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</snapshotRepository>
