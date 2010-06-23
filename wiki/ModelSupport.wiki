@@ -207,4 +207,4 @@ Notice the only difference between the last two models is the `setProperty()` me
 This is to provide a custom implementation of a dirtyable model.  To set the dirty property call `setDirty()`.
 
 ---
-For more information on what you can do with the event dispatch system, see the [http://java-simple-mvc.googlecode.com/svn/trunk/docs/index.html javadocs], as they are documented well and show all functionality.
+For more information on what you can do with models, see the [http://java-simple-mvc.googlecode.com/svn/trunk/docs/index.html javadocs], as they are documented well and show all functionality.
