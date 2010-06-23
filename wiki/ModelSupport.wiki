@@ -35,8 +35,8 @@ model.addPropertyChangeListener(new PropertyChangeListener() {
 });
 }}}
 
-==AbstractModel==
-AbstractModel provides basic support for keeping track of property changes.  Singleton models should use this class.  Here is an excerpt of a singleton model from the [https://sourceforge.net/projects/tridas/ TRiDAS - Tree Ring Standard] project.
+==AbstractModel Class==
+`AbstractModel` provides basic support for keeping track of property changes.  Singleton models should use this class.  Here is an excerpt of a singleton model from the [https://sourceforge.net/projects/tridas/ TRiDAS - Tree Ring Standard] project.
 
 {{{
 public class ConvertModel extends AbstractModel {
@@ -96,7 +96,7 @@ public class ConvertModel extends AbstractModel {
 }
 }}}
 
-==AbstractRevertableModel==
+==AbstractRevertableModel Class==
 If you need a model that stores properties that can be reverted, or 'canceled', then `AbstractRevertableModel` is for you.  This class uses your calls to `firePropertyChangeEvent()` to keep track of all changed properties, and then can revert them back to their original state, or from the last time `saveModel()` was called.  Here is another excerpt from 
 the  [https://sourceforge.net/projects/tridas/ TRiDAS - Tree Ring Standard] project.
 {{{
@@ -201,11 +201,9 @@ private static final ConfigModel model = new ConfigModel();
 	}
 }
 }}}
-Notice the only difference between the last two models is the `setProperty()` method.  This is how the AbstractRevertableModel reverts changes.
+Notice the only difference between the last two models is the `setProperty()` method.  This is how the `AbstractRevertableModel` reverts changes.
 
-==AbstractDirtyableModel==
+==AbstractDirtyableModel Class==
 This is to provide a custom implementation of a dirtyable model.  To set the dirty property call `setDirty()`.
-
-
 
 
