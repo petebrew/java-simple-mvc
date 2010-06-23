@@ -12,7 +12,7 @@ All models have support for dispatching `PropertyChangeEvent`s.  To listen to th
 {{{
 AbstractModel model = MainWindowModel.getInstance();
 model.addPropertyChangeListener(myPropertyChangeListener);
-}}
+}}}
 or like this:
 {{{
 // MainWindowModel is a singleton model
@@ -205,8 +205,6 @@ Notice the only difference between the last two models is the `setProperty()` me
 
 ==AbstractDirtyableModel==
 This is to provide a custom implementation of a dirtyable model.  To set the dirty property call `setDirty()`.
-
-
 
 
 
