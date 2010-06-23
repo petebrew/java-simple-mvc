@@ -1,0 +1,213 @@
+#summary Different types of models that make your life easier
+#labels Phase-Implementation
+
+= Introduction =
+
+There are three different types of models you can extend depending on your model situation.  `AbstractModel` is the simplest, which provides methods for firing `PropertyChangeEvent`s.  `AbstractDirtyableModel` keeps track of a `dirty` property that is used to tell if a model has changed.  `AbstractRevertableModel`  (which is misspelled, I know), will keep track of all changed and will revert changes for you.
+
+=Usage=
+
+==Property Changes==
+All models have support for dispatching `PropertyChangeEvent`s.  To listen to these events, you use an `PropertyChangeListener`, like so:
+{{{
+AbstractModel model = MainWindowModel.getInstance();
+model.addPropertyChangeListener(myPropertyChangeListener);
+}}
+or like this:
+{{{
+// MainWindowModel is a singleton model
+AbstractModel model = MainWindowModel.getInstance();
+model.addPropertyChangeListener(new PropertyChangeListener() {
+	public void propertyChange(PropertyChangeEvent evt) {
+		// handle the event, based on the property name
+		// ex:
+		if (evt.getPropertyName().equals("lock")) {
+			boolean lock = (Boolean) evt.getNewValue();
+			if (lock) {
+				// lock components
+			}
+			else {
+				// lock components
+			}
+		}
+		// other property names
+	}
+});
+}}}
+
+==AbstractModel==
+AbstractModel provides basic support for keeping track of property changes.  Singleton models should use this class.  Here is an excerpt of a singleton model from the [https://sourceforge.net/projects/tridas/ TRiDAS - Tree Ring Standard] project.
+
+{{{
+public class ConvertModel extends AbstractModel {
+	private static final ConvertModel model = new ConvertModel();
+	
+	private String outputFormat = "TRiDaS";
+	
+	private int processed = 0;
+	private int failed = 0;
+	private int convWithWarnings = 0;
+	
+	private ConvertModel() {}
+	
+	public void setOutputFormat(String argOutputFormat) {
+		String old = outputFormat;
+		outputFormat = argOutputFormat;
+		firePropertyChange("outputFormat", old, outputFormat);
+	}
+	
+	public String getOutputFormat() {
+		return outputFormat;
+	}
+	
+	public void setProcessed(int argProcessed) {
+		int old = processed;
+		processed = argProcessed;
+		firePropertyChange("processed", old, processed);
+	}
+	
+	public int getProcessed() {
+		return processed;
+	}
+	
+	public void setFailed(int argFailed) {
+		int old = failed;
+		failed = argFailed;
+		firePropertyChange("failed", old, failed);
+	}
+	
+	public int getFailed() {
+		return failed;
+	}
+	
+	public void setConvWithWarnings(int argConvWithWarnings) {
+		int old = convWithWarnings;
+		convWithWarnings = argConvWithWarnings;
+		firePropertyChange("convWithWarnings", old, convWithWarnings);
+	}
+	
+	public int getConvWithWarnings() {
+		return convWithWarnings;
+	}
+	
+	public static final ConvertModel getInstance() {
+		return model;
+	}
+}
+}}}
+
+==AbstractRevertableModel==
+If you need a model that stores properties that can be reverted, or 'canceled', then `AbstractRevertableModel` is for you.  This class uses your calls to `firePropertyChangeEvent()` to keep track of all changed properties, and then can revert them back to their original state, or from the last time `saveModel()` was called.  Here is another excerpt from 
+the  [https://sourceforge.net/projects/tridas/ TRiDAS - Tree Ring Standard] project.
+{{{
+private static final ConfigModel model = new ConfigModel();
+	
+	private String namingConvention = "Numerical";
+	private String writingCharset = TridasIO.getWritingCharset();
+	private String readingCharset = TridasIO.isCharsetDetection() ? Charsets.AUTO : TridasIO.getReadingCharset();;
+	
+	private IMetadataFieldSet readerDefaults = null;
+	private IMetadataFieldSet writerDefaults = null;
+	
+	public void setNamingConvention(String argNamingConvention) {
+		String old = namingConvention;
+		namingConvention = argNamingConvention;
+		firePropertyChange("namingConvention", old, namingConvention);
+	}
+	
+	public String getNamingConvention() {
+		return namingConvention;
+	}
+
+	/*
+	 * @param argHideWarnings the hideWarnings to set
+	 * public void setHideWarnings(boolean argHideWarnings) {
+	 * boolean old = hideWarnings;
+	 * hideWarnings = argHideWarnings;
+	 * firePropertyChange("hideWarnings", old, hideWarnings);
+	 * }
+	 * /**
+	 * @return the hideWarnings
+	 * public boolean isHideWarnings() {
+	 * return hideWarnings;
+	 * }
+	 */
+
+	public void setWritingCharset(String argCharset) {
+		String old = writingCharset;
+		writingCharset = argCharset;
+		firePropertyChange("writingCharset", old, writingCharset);
+	}
+	
+	public String getWritingCharset() {
+		return writingCharset;
+	}
+	
+	/**
+	 * @param argReadingCharset
+	 *            the readingCharset to set
+	 */
+	public void setReadingCharset(String argReadingCharset) {
+		String old = readingCharset;
+		readingCharset = argReadingCharset;
+		firePropertyChange("readingCharset", old, readingCharset);
+	}
+	
+	/**
+	 * @return the readingCharset
+	 */
+	public String getReadingCharset() {
+		return readingCharset;
+	}
+	
+	public void setReaderDefaults(IMetadataFieldSet argReaderDefaults) {
+		IMetadataFieldSet old = readerDefaults;
+		readerDefaults = argReaderDefaults;
+		firePropertyChange("readerDefaults", old, readerDefaults);
+	}
+	
+	public IMetadataFieldSet getReaderDefaults() {
+		return readerDefaults;
+	}
+
+	public void setWriterDefaults(IMetadataFieldSet argWriterDefaults) {
+		IMetadataFieldSet old = writerDefaults;
+		writerDefaults = argWriterDefaults;
+		firePropertyChange("writerDefaults", old, writerDefaults);
+	}
+
+	public IMetadataFieldSet getWriterDefaults() {
+		return writerDefaults;
+	}
+
+	/**
+	 * @see com.dmurph.mvc.model.AbstractRevertableModel#setProperty(java.lang.String, java.lang.Object)
+	 */
+	@Override
+	protected void setProperty(String argPropertyName, Object argValue) {
+		String prop = argPropertyName;
+		
+		if(prop.equals("writerDefaults")){
+			setWriterDefaults((IMetadataFieldSet) argValue);
+		}else if(prop.equals("readerDefaults")){
+			setReaderDefaults((IMetadataFieldSet) argValue);
+		}else if(prop.equals("writingCharset")){
+			setWritingCharset((String) argValue);
+		}else if(prop.equals("readingCharset")){
+			setReadingCharset((String) argValue);
+		}else if(prop.equals("namingConvention")){
+			setNamingConvention((String) argValue);
+		}
+	}
+}
+}}}
+Notice the only difference between the last two models is the `setProperty()` method.  This is how the AbstractRevertableModel reverts changes.
+
+==AbstractDirtyableModel==
+This is to provide a custom implementation of a dirtyable model.  To set the dirty property call `setDirty()`.
+
+
+
+
+
+
