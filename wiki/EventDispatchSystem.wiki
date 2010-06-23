@@ -117,4 +117,4 @@ MVCEvent event2 = new MVCEvent(ANOTHER_EVENT_KEY);
 event2.dispatch();
 }}}
 ----
-For more information on what you can do with the event dispatch system, see the javadocs, as they are documented well and show all functionality.
+For more information on what you can do with the event dispatch system, see the [http://java-simple-mvc.googlecode.com/svn/trunk/docs/index.html javadocs], as they are documented well and show all functionality.
