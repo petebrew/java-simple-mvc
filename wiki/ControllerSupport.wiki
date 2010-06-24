@@ -93,7 +93,7 @@ event.dispatch();
 }}}
 or
 {{{
-MVCEvent event = new MVCEvent(MainWindowController.ABOUT);
+MVCEvent event = new AboutEvent(true);
 event.dispatch();
 }}}
 
