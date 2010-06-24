@@ -60,7 +60,11 @@ public class MainWindowController extends FrontController{
 	}
 
 	public void about(MVCEvent argEvent){
-		AboutDialog about = new AboutDialog(this);
+		// example of custom event that holds a boolean value
+		AboutEvent event = (AboutEvent) argEvent;
+		boolean showLogo = event.isShowLogo();
+
+		AboutDialog about = new AboutDialog(this, showLogo);
 		try {
 			MVC.splitOff();
 			// so other mvc events can execute, this is explained in the EventDispatchSystem wiki page
