@@ -1,4 +1,4 @@
-#summary Guide to the event dispatch system.
+#summary Guide to the event dispatch system, the core of the library
 #labels Phase-Implementation,Featured
 
 =Introduction=
