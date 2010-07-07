@@ -14,9 +14,9 @@ public class MainWindowController extends FrontController{
 	public static final String ABOUT = "APPLICATION_ABOUT";
 
 	public MainWindowController(){
-		registerCommand(STARTUP, new StartupCommand());
-		registerCommand(QUIT, new QuitCommand());
-		registerCommand(ABOUT, new AboutCommand());
+		registerCommand(STARTUP, StartupCommand.class);
+		registerCommand(QUIT, QuitCommand.class);
+		registerCommand(ABOUT, AboutCommand.class);
 	}
 }
 }}}
@@ -32,16 +32,9 @@ public class MainWindowController extends FrontController{
 	public static final String ABOUT = "APPLICATION_ABOUT";
 
 	public MainWindowController(){
-		try {
-			registerCommand(STARTUP, "startup");
-			registerCommand(QUIT, "quit");
-			registerCommand(ABOUT, "about");
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		}
-		// these exceptions are for if the methods don't exist
+		registerCommand(STARTUP, "startup");
+		registerCommand(QUIT, "quit");
+		registerCommand(ABOUT, "about");
 	}
 
 	public void startup(MVCEvent argEvent){
@@ -79,9 +72,9 @@ public class MainWindowController extends FrontController{
 }
 }}}
 
-This isn't the best usage if you're looking to stick to MVC standards, as this allows interaction between command methods (they can see the same object fields and such).  In general, commands need to be self contained and unique to each event.  So the first method isn't the correct method either, I need to register commands by passing the command class, and then construct a new one for each event.  That's the next release :)
+This isn't the best usage if you're looking to stick to MVC standards, as this allows interaction between command methods (they can see the same object fields and such).  In general, commands need to be self contained and unique to each event.  The first method  enforces this methodology much better.
 
-So, these commands listen for these:
+So, these commands listen for events like these:
 {{{
 MVCEvent event = new MVCEvent(MainWindowController.STARTUP);
 event.dispatch();
