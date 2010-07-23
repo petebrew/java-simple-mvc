@@ -271,6 +271,16 @@ Also notice that we redefined some properties to `READ_ONLY` instead of `READ_WR
 
 Finally notice that one of our properties is a `SingleRadiusModel`, which also happens to be another `HashModel`.  I made the `HashModel` around having embedded models and the util classes like `MVCArrayList`s, so that calls to `revertChanges()`, `isDirty()`, etc, will be invoked throughout the property tree.
 
+The model would be used like so:
+{{{
+SingleSampleModel model = new SingleSampleModel();
+model.setProperty( SingleSampleModel.TITLE, "First Sample");
+model.setRadiusModel(new SingleRadiusModel());
+
+SingleRadiusModel radiusModel = (SingleRadiusModel) model.getProperty(SingleSampleModel.RADIUS_MODEL);
+}}}
+As I said before, the one drawback of this model is all the casting you need to do when getting properties.
+
 ==`AbstractDirtyableModel` Class==
 This is to provide a simple implementation of a dirtyable model.  To set the dirty property call `setDirty()`.
 
