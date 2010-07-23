@@ -1,9 +1,9 @@
 #summary Different types of models that make your life easier
-#labels Phase-Implementation
+#labels Phase-Implementation,Featured
 
 = Introduction =
 
-There are three different types of models you can extend depending on your model situation.  `AbstractModel` is the simplest, which provides methods for firing `PropertyChangeEvent`s.  `AbstractDirtyableModel` keeps track of a `dirty` property that is used to tell if a model has changed.  `AbstractRevertableModel`  (which is misspelled, I know), will keep track of all changed and will revert changes for you.
+There are three different types of models you can extend depending on your model situation.  `AbstractModel` is the simplest, which provides methods for firing `PropertyChangeEvent`s.  `AbstractDirtyableModel` keeps track of a `dirty` property that is used to tell if a model has changed.  `AbstractRevertibleModel`, will keep track of all changed and will revert changes for you.
 
 =Usage=
 
@@ -203,8 +203,76 @@ private static final ConfigModel model = new ConfigModel();
 }}}
 Notice the only difference between the last two models is the `setProperty()` method.  This is how the `AbstractRevertableModel` reverts changes.
 
+=== lots of code! ===
+You might be thinking, this is a lot of code to just make a simple model.  You're right, it is. That's why I've made the `HashModel`.
+
+== `HashModel` Class ==
+Model that stores all properties in a HashMap, so all `IDirtyable`, `ICloneable`, and `IRevertible functionality is handled internally.
+
+This class also will forward all calls to it's members if they implement the associated interface.  For example, if `revertChanges()` is called, then--after reverting any changes to this model--it will call `revertChanges()` on any property that is `IRevertible`.  This can get dangerous if your property tree goes in a loop (you'll get infinite calls).  In that case override `cloneImpl(Object)`, `revertChangesImpl(IRevertible)`, `isDirtyImpl(IDirtyable)`, or `saveChangesImpl(IRevertible)` to prevent this.  Or, be smart and don't loop your properties.
+
+Here is an example of a HashModel, taken from the [http://dendro.cornell.edu/corina/ Corina] project:
+{{{
+public class SingleSampleModel extends HashModel {
+	private static final long serialVersionUID = 1L;
+
+	public static final String ELEMENT_CODE = "Element Code";
+	public static final String SAMPLE_CODE = "Sample Code";
+	public static final String TITLE = "Title";
+	public static final String COMMENTS = "Comments";
+	public static final String TYPE = "Type";
+	public static final String DESCRIPTION = "Description";
+	public static final String SAMPLING_DATE = "Sampling Date";
+	public static final String POSITION = "Position";
+	public static final String STATE = "State";
+	public static final String KNOTS = "Knots";
+	public static final String BOX_ID = "BoxID";
+	public static final String IMPORTED = "Imported";
+	
+	// radius stuff
+	public static final String RADIUS_MODEL = "RADIUS_MODEL";
+
+	public static final String[] PROPERTIES = {
+		ELEMENT_CODE, SAMPLE_CODE, TITLE, COMMENTS, TYPE, DESCRIPTION,
+		SAMPLING_DATE, POSITION, STATE, KNOTS, BOX_ID, IMPORTED
+	};
+	
+	public SingleSampleModel(){
+		registerProperty(PROPERTIES, PropertyType.READ_WRITE);
+		registerProperty(SAMPLE_CODE, PropertyType.READ_ONLY);
+		registerProperty(IMPORTED, PropertyType.READ_ONLY, false);
+		registerProperty(RADIUS_MODEL, PropertyType.READ_ONLY);
+	}
+	
+	public void setSampleCode(String argCode){
+		registerProperty(SAMPLE_CODE, PropertyType.READ_ONLY, argCode);
+	}
+	
+	public void setImported(boolean argImported){
+		registerProperty(IMPORTED, PropertyType.READ_ONLY, argImported);
+	}
+	
+	public void setRadiusModel(SingleRadiusModel argModel){
+		if(argModel != null){
+			argModel.setProperty(SingleRadiusModel.SAMPLE_CODE, getProperty(SAMPLE_CODE));
+		}
+		registerProperty(RADIUS_MODEL, PropertyType.READ_ONLY, argModel);
+	}
+}
+}}}
+
+First thing to notice is how little code is needed.  Just from this we get all the functionality mentioned above.  The drawback?  We have to cast every property we get from this model.
+
+Properties are registered with a `PropertyType`, which tells the model how to treat the setting of a property:
+  * `READ_WRITE`: the property behaves normally, and can be set using the `setProperty(String,Object)` method.
+  * `READ_ONLY`: the property can only be set by calling `registerProperty(String,PropertyType,Object)` from within the extending class.
+  * `FINAL`: the property can not be set again no matter what, not even by registering it again.  This is helpful if you want to guarantee that an object reference will always be the same.
+Also notice that we redefined some properties to `READ_ONLY` instead of `READ_WRITE`.
+
+Finally notice that one of our properties is a `SingleRadiusModel`, which also happens to be another `HashModel`.  I made the `HashModel` around having embedded models and the util classes like `MVCArrayList`s, so that calls to `revertChanges()`, `isDirty()`, etc, will be invoked throughout the property tree.
+
 ==`AbstractDirtyableModel` Class==
-This is to provide a custom implementation of a dirtyable model.  To set the dirty property call `setDirty()`.
+This is to provide a simple implementation of a dirtyable model.  To set the dirty property call `setDirty()`.
 
 ---
-For more information on what you can do with models, see the [http://java-simple-mvc.googlecode.com/svn/trunk/docs/index.html javadocs], as they are documented well and show all functionality.
+For more information on what you can do with models, see the [http://www.dmurph.com/javasimplemvc/index.html javadocs], as they are documented well and show all functionality.
