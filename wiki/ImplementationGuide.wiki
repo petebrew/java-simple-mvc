@@ -1,5 +1,5 @@
 #summary Easy guide for a simple implementation of JavaSimpleMVC
-#labels Phase-Implementation
+#labels Phase-Implementation,Featured
 
 = Introduction =
 Many people are confused on how to actually implement the MVC architecture.  This guide will show you an example of implementing JavaSimpleMVC (which we'll just call JMVC).  See ModelViewControllerOverview for a brief overview of the MVC methodology if you're feeling rusty.  
