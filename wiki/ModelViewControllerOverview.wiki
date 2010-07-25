@@ -8,7 +8,7 @@ The goal of MVC (which stands for Model-View-Controller) is to separate the data
 The model is the core of the pattern.  It's content dictates everything that the user sees.  The model:
   * Stores all the data.
   * Lets any listener know when something has changed.
-The model has no idea or concept of anything else in the program.  All it knows it the data it holds.  Models can get tricky when you have models within models (or even items like ArrayLists), so JavaSimpleMVC (we'll call it JMVC) will propagate calls like `clone()`, `revertChanges()`, and `isDirty()` down the model for you.
+The model has no idea or concept of anything else in the program.  All it knows it the data it holds.  Models can get tricky when you have models within models (or even items like `ArrayList`s), so JavaSimpleMVC (we'll call it JMVC) will propagate calls like `clone()`, `revertChanges()`, and `isDirty()` down the model for you.
 
 = The View =
 The view is everything the user sees, and is always associated with one or more models.  It:
