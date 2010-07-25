@@ -21,7 +21,7 @@ The first thing we do is create our *!ModelLocator*.  The model locator is a sin
   * Anything else that needs to be universally available
 And always contains all instantiated controllers (they have to be created somewhere!)
 
-We start with very basic !FooModelLocator:
+We start with a very basic !FooModelLocator:
 {{{
 package foo.model;
 
@@ -398,6 +398,8 @@ public class FooModelLocator {
 	
 	private MainWindow mainWindow = null;
 	
+	private FooModelLocator(){}
+
 	public void setMainWindow(MainWindow argWindow){
 		mainWindow = argWindow;
 	}
