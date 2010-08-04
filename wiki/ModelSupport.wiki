@@ -288,5 +288,5 @@ As I said before, the one drawback of this model is all the casting you need to 
 ==`AbstractDirtyableModel` Class==
 This is to provide a simple implementation of a dirtyable model.  To set the dirty property call `setDirty()`.
 
----
+----
 For more information on what you can do with models, see the [http://www.dmurph.com/javasimplemvc/index.html javadocs], as they are documented well and show all functionality.
