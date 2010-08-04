@@ -27,4 +27,6 @@ MVC.setGlobalEventMonitor(monitor);
 monitor.setVisible(true);
 }}}
 
-And that's it.
+And that's it.  Here is an image of what it looks like:
+
+http://www.dmurph.com/javasimplemvc/MonitorExample.png
