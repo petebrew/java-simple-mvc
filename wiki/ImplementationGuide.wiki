@@ -446,6 +446,39 @@ Now we didn't really need to add the whole `mainWindow` stuff, but I put it ther
 Let's run it again with our changes...
 
 == Colors Change!!! ==
-You should be able to change the color of the text by pressing the buttons!  The "Change Text" button doesn't work yet, but we'll make that next.
+You should be able to change the color of the text by pressing the buttons!  
+
+http://www.dmurph.com/javasimplemvc/ExampleWindow1.png
+
+=== Let's take a look at these events ===
+Before we make our change text window, lets take a moment to visualize our events.  JMVC provides a great tool for seeing all the events that are dispatched (see EventMonitoring).  To show the monitor, we can simply call `MVC.showEventMonitor()`.  Let's put it in our `App` class:
+
+{{{
+package foo;
+
+import javax.swing.JFrame;
+
+import foo.model.FooModelLocator;
+import foo.model.main.MainModel;
+import foo.view.main.MainWindow;
+
+public class App {
+	
+	public static void main(String[] args) {
+		MVC.showEventMonitor();  // here is where we add it
+		FooModelLocator locator = FooModelLocator.getInstance();
+		MainModel model = new MainModel();
+		MainWindow window = new MainWindow(model);
+		locator.setMainWindow(window);
+		window.pack();
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setVisible(true);
+	}
+}
+}}}
+
+Now when we launch the application, we see the event monitor window pop up, and when we click on the button we can see our events as they dispatch!
+
+http://www.dmurph.com/javasimplemvc/ExampleMonitor1.png
 
 Next part of the tutorial coming soon!
