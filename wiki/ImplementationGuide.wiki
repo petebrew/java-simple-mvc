@@ -43,7 +43,7 @@ public class FooModelLocator {
 As you can see, this is literally just an empty singleton.  But we'll expand it later.
 
 == Model Creation ==
-Next, we create our models.  In this example, we'll only need one model, which will store:
+Next, we create our models.  In this example, we'll need two models, but for now lets just focus on our main window, where we need one model to store:
   * The text to show
   * The color of the text
 
@@ -480,5 +480,29 @@ public class App {
 Now when we launch the application, we see the event monitor window pop up, and when we click on the button we can see our events as they dispatch!
 
 http://www.dmurph.com/javasimplemvc/ExampleMonitor1.png
+
+This tool is invaluable when trying to debug your code, and making sure that all MVC events are fired correctly.  It will also show you when an event doesn't have a listeners (there's a star in the `Never Received` column).
+
+Notice, however, that there is a column we're not using, the `Event Value` column.  This is because the monitor populates this only if the event is an `ObjectEvent<E>`.  Then it can call `getValue().toString()` on the event and display the value of the event.  Lets do this for our ColorChangeEvent:
+
+{{{
+public class ColorChangeEvent extends ObjectEvent<Color> {
+
+	public final MainModel model;
+	
+	public ColorChangeEvent(Color argColor, MainModel argModel) {
+		super(MainController.COLOR_CHANGE, argColor);
+		model = argModel;
+	}
+}
+}}}
+
+When we lauch the app again, now we see the color values!
+
+http://www.dmurph.com/javasimplemvc/ExampleMonitor2.png
+
+Now that we've learned how to monitor our events, lets create our text change dialog.
+
+== Text Change Dialog ==
 
 Next part of the tutorial coming soon!
