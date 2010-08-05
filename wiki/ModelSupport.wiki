@@ -5,9 +5,9 @@
 
 There are four different types of models you can use depending on your need.
   * *[#AbstractModel AbstractModel]* is the simplest, which provides methods for firing `PropertyChangeEvent`s.
-  * *[ModelSupport#AbstractDirtyableModel AbstractDirtyableModel]* keeps track of a `dirty` property that is used to tell if a model has changed.
-  * *[ModelSupport#AbstractRevertibleModel AbstractRevertibleModel]* keeps track of all property changes and will revert/save changes for you.
-  * *[ModelSupport#HashModel HashModel]* uses a `HashMap` to store properties internally, and thus can also provide all the functionality for `ICloneable`, `IDirtyable`, and `IRevertible` internally.  If you need any of that functionality, then this is usually the best model to use, and it takes the _least_ amount of code to implement.
+  * *[#AbstractDirtyableModel AbstractDirtyableModel]* keeps track of a `dirty` property that is used to tell if a model has changed.
+  * *[#AbstractRevertibleModel AbstractRevertibleModel]* keeps track of all property changes and will revert/save changes for you.
+  * *[#HashModel HashModel]* uses a `HashMap` to store properties internally, and thus can also provide all the functionality for `ICloneable`, `IDirtyable`, and `IRevertible` internally.  If you need any of that functionality, then this is usually the best model to use, and it takes the _least_ amount of code to implement.
 
 Along with these dynamic models, there is an `ArrayList` model and a `HashSet` model, `MVCArrayList` and `MVCHashSet`, that support all MVC features.  These are models themselves, and have property change support, so you can extend them as well.  See UtilityClasses, and take a look at the [http://www.dmurph.com/javasimplemvc/index.html javadocs], as they are documented well and show all functionality.
 
