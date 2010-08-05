@@ -4,10 +4,10 @@
 = Introduction =
 
 There are four different types of models you can use depending on your need.
-  * *AbstractModel* is the simplest, which provides methods for firing `PropertyChangeEvent`s.
-  * *AbstractDirtyableModel* keeps track of a `dirty` property that is used to tell if a model has changed.
-  * *AbstractRevertibleModel* keeps track of all property changes and will revert/save changes for you.
-  * *HashModel* uses a `HashMap` to store properties internally, and thus can also provide all the functionality for `ICloneable`, `IDirtyable`, and `IRevertible` internally.  This is the model that takes the least code to implement, but the drawback is that all properties need to be casted when they are retrieved.  However, making your own get methods solves this.
+  * *[ModelSupport#AbstractModel AbstractModel]* is the simplest, which provides methods for firing `PropertyChangeEvent`s.
+  * *[ModelSupport#AbstractDirtyableModel AbstractDirtyableModel]* keeps track of a `dirty` property that is used to tell if a model has changed.
+  * *[ModelSupport#AbstractRevertibleModel AbstractRevertibleModel]* keeps track of all property changes and will revert/save changes for you.
+  * *[ModelSupport#HashModel HashModel]* uses a `HashMap` to store properties internally, and thus can also provide all the functionality for `ICloneable`, `IDirtyable`, and `IRevertible` internally.  This is the model that takes the least code to implement, but the drawback is that all properties need to be casted when they are retrieved.  However, making your own get methods solves this.
 
 Along with these dynamic models, there is an `ArrayList` model and a `HashSet` model, `MVCArrayList` and `MVCHashSet`, that support all MVC features.  See UtilityClasses, and take a look at the [http://www.dmurph.com/javasimplemvc/index.html javadocs], as they are documented well and show all functionality.
 
@@ -38,7 +38,7 @@ model.addPropertyChangeListener(new PropertyChangeListener() {
 });
 }}}
 
-==AbstractModel==
+==!AbstractModel==
 `AbstractModel` provides basic support for keeping track of property changes.  Here is an excerpt of a singleton model from the [https://sourceforge.net/projects/tridas/ TRiDAS - Tree Ring Standard] project.
 
 {{{
@@ -102,7 +102,7 @@ public class ConvertModel extends AbstractModel {
 }
 }}}
 
-==AbstractRevertableModel==
+==!AbstractRevertableModel==
 If you need a model that stores properties that can be reverted, or 'canceled', then `AbstractRevertableModel` is for you.  This class uses your calls to `firePropertyChangeEvent()` to keep track of all changed properties, and then can revert them back to their original state, or from the last time `saveModel()` was called.  Here is another excerpt from 
 the  [https://sourceforge.net/projects/tridas/ TRiDAS - Tree Ring Standard] project.
 {{{
@@ -212,7 +212,7 @@ Notice the only difference between the last two models is the `setProperty()` me
 === lots of code! ===
 You might be thinking, this is a lot of code to just make a simple model.  You're right, it is. That's why I've made the `HashModel`.
 
-==HashModel ==
+==!HashModel ==
 Model that stores all properties in a HashMap, so all `IDirtyable`, `ICloneable`, and `IRevertible` functionality is handled internally.  This makes it the easiest, and often best, class to use if you need any of that functionality.
 
 This class also will forward all calls to it's members if they implement the associated interface.  For example, if `revertChanges()` is called, then--after reverting any changes to this model--it will call `revertChanges()` on any property that is `IRevertible`.  This can get dangerous if your property tree goes in a loop (you'll get infinite calls).  In that case override `cloneImpl(Object)`, `revertChangesImpl(IRevertible)`, `isDirtyImpl(IDirtyable)`, or `saveChangesImpl(IRevertible)` to prevent this.  Or, be smart and don't loop your properties.
@@ -284,7 +284,7 @@ As I said before, the one drawback of this model is all the casting you need to 
 	}
 }}}
 
-==AbstractDirtyableModel==
+==!AbstractDirtyableModel==
 This is to provide a simple implementation of a dirtyable model.  To set the dirty property call `setDirty()`.
 
 ----
