@@ -3,7 +3,9 @@
 
 =Introduction=
 
-The event dispatch system, which is run by the class `MVC`, is the core of the library.  Event listening is based on the event `key`, and all events are dispatched globally.  That means you have to be careful with your keys, as you don't want any duplicates.  While most implementations of this library will not be setting up event listening directly with the 'MVC' class (most events are meant for controllers, which send them to commands), you can still directly work with the dispatch thread to listen to event.  The system is single-threaded, but also has the ability to "split off" dispatching an event from the main dispatch thread.
+The event dispatch system, which is run by the class `MVC`, is the core of the library.  Event listening is based on the event `key`, and all events are dispatched globally.  That means you have to be careful with your keys, as you don't want any duplicates.  While most implementations of this library will not be setting up event listening directly with the 'MVC' class (most events are meant for controllers, which automatically registers commands with events for you), you can still directly work with the dispatch thread to listen to event.  The system is single-threaded, but also has the ability to "split off" dispatching an event from the main dispatch thread (helpful if showing a modal dialog or if you need other MVC events dispatched during an operation that is running on the MVC thread).
+
+This event dispatcher can easily be used independent of the mvc library if you just need a simple event dispatcher.
 
 =Usage=
 ==Dispatching Events==
@@ -103,7 +105,7 @@ Splitting off can only be done by the main dispatch thread.  E.g, it can't be do
 try {
 	MVC.splitOff(); // so other mvc events can execute
 } catch (IllegalThreadException e) {
-	// this means that the thread that called splitOff() was not an MVC thread.
+	// this means that the thread that called splitOff() was not an MVC thread, and the next event's won't be blocked anyways.
 	e.printStackTrace();
 } catch (IncorrectThreadException e) {
 	// this means that this MVC thread is not the main thread, it was already splitOff() previously
