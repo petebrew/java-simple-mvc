@@ -1,0 +1,21 @@
+#summary Current/Future features
+#labels Featured,Phase-Implementation
+
+=Future=
+  * Create custom property change events for adding and removing properties on models (_1.3.5_).
+  * Create a gui monitor for model properties (for `HashModel`, `MVCArrayList`, and `MVCHashSet`), values can be viewed/changed and changes monitored (_1.3.5_).
+  * Java Swing gui components that work with JMVC models easily (eg, a combo box that will watch an 'MVCArrayList' for it's content).
+    * MVCComboBox (_1.3.5_)
+    * MVCTable - HashModel properties for columns
+  * What would you like?
+
+=Current=
+  * Event dispatch thread that can branch on request.
+  * Event monitor to display all events and corresponding warnings/exceptions
+  * Various models that support
+    * Property change listeners
+    * Deep cloning
+    * Dirty checking (if changes have been made)
+    * Save/revert changes
+  * Controller/Command architecture
+  * internationalization (let me know if you have/want translations... assuming you can read this)
