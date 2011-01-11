@@ -30,7 +30,7 @@
   * Java Swing gui components that work with JMVC models easily
     * MVCComboBox (_1.4.0_)
 
-==_1.3.4_==
+==_1.3.3_==
 
   * Event dispatch thread that can branch on request.
   * Event monitor to display all events and corresponding warnings/exceptions
