@@ -3,6 +3,7 @@
 
 =Future=
 Release versions are tentitive.
+  * Logging with slf4j
   * Create custom property change events for adding and removing properties on models (_1.3.5_).
   * Java Swing gui components that work with JMVC models easily (eg, a combo box that will watch an 'MVCArrayList' for it's content).
     * MVCComboBox (_1.4.0_)
