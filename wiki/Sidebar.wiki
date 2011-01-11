@@ -1,4 +1,4 @@
-<p align="center">===Info===</p>
+===<p align="center">Info</p>===
   * [Changelog Changelog]
   * [ModelViewControllerOverview Overview of MVC]
 ===Usage===
