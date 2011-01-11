@@ -83,10 +83,19 @@ The event dispatch system can only have one monitor.  See below for other ideas 
 ==Handling Events==
 JavaSimpleMVC gives you a couple of tools to make event handling as flexible as possible.
 
+==Stop Listening==
+To stop listening for an event, just return false in the `eventReceived` method, like so
+{{{
+public boolean eventReceived(MVCEvent argEvent){
+	return false;
+}
+}}}
+This tells the dispatch thread to remove the current listener (you) from the listener list.
+
 ===Stop Propagation===
 You can stop event propagation (stop events from dispatching to the rest of the listeners) by calling 'stopPropagation()'.  Remember that the *last* listener registered will be the *first* to receive the event.
 {{{
-public void eventReceived(MVCEvent argEvent){
+public boolean eventReceived(MVCEvent argEvent){
 	if(argEvent.key.equals("mySpecialEventKey"){
 		// don't let anyone else get this event!
 		argEvent.stopPropagation();
