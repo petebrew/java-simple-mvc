@@ -1,7 +1,7 @@
   * [Changelog Changelog]
-  * Info
-      * [ModelViewControllerOverview Overview of MVC]
-  * Usage
+  * [ModelViewControllerOverview Overview of MVC]
+
+==Usage==
       * [ImplementationGuide Simple Implementation Walkthrough]
       * [EventDispatchSystem The Core Event Dispatch System]
       * [ModelSupport Using Models]
