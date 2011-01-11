@@ -1,0 +1,4 @@
+#summary logging with slf4j
+#labels Phase-Implementation
+
+Logging is done with [http://www.slf4j.com/ slf4j], which works with most popular logging frameworks.  Visit the website to learn more about how to use it, it's very simple.
