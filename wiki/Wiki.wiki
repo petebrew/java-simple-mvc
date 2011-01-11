@@ -1,14 +1,7 @@
-#summary MainWikiPage
+#summary JavaSimpleMVC Wiki!
 
+=Welcome to the JavaSimpleMVC Wiki!=
 
-= Introduction =
+[http://www.dmurph.com/javasimplemvc/ExampleMonitor2.png]
 
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Use the sidebar on the left to choose a topic.
