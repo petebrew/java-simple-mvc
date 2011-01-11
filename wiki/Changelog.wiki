@@ -12,9 +12,9 @@
     * Save/revert changes
   * Controller/Command architecture
   * Logging with slf4j
-  * Custom property change events for adding and removing properties on models (_1.3.5_).
+  * Custom property change events for adding and removing properties on models
   * Java Swing gui components that work with JMVC models easily
-    * MVCComboBox (_1.4.0_)
+    * MVCComboBox
   * Internationalization (let me know if you have/want translations... assuming you can read this)
 
 =Future=
