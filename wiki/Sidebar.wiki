@@ -10,4 +10,4 @@
   * [CommandSupport Using Commands]
   * [EventMonitoring Graphical Event Monitoring]
   * [GoogleAnalyticsSupport Adding Google Analytics]
-  * [Logging logging info]
+  * [Logging Logging Info]
