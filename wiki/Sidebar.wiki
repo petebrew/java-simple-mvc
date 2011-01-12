@@ -1,6 +1,6 @@
   * [Wiki Home]
 ===Info===
-  * [Changelog Changelog]
+  * [Changelog Feature List and Changelog]
   * [ModelViewControllerOverview Overview of MVC]
 ===Usage===
   * [ImplementationGuide Simple Implementation Walkthrough]
