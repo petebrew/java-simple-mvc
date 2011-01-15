@@ -32,5 +32,5 @@ Using the MVC methodology gives us many advantages:
   * Maintaining the codebase is much easier, as the structure of the application follows a methodology, allowing new developers to easily dive into the code or find bugs as they know where things should be layed out. 
 
 There are some disadvantages though:
-  * Using this architechture requires a lot more code.
+  * At first, using this architechture requires a lot more initial coding, but it usually reduces the amount of code after the structure is in place.
   * It's often tricky to stick to the methodology, but once you get the hang of it gets easier.
