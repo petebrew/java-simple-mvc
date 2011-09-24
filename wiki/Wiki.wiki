@@ -1,5 +1,5 @@
 #summary JavaSimpleMVC Wiki!
-
+#sidebar Sidebar
 =Welcome to the JavaSimpleMVC Wiki!=
 
 [http://www.dmurph.com/javasimplemvc/ExampleMonitor2.png]
