@@ -1,4 +1,3 @@
-  * [Wiki Home]
 ===Info===
   * [Changelog Feature List and Changelog]
   * [ModelViewControllerOverview Overview of MVC]
