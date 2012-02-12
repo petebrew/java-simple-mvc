@@ -27,7 +27,7 @@
 =Changelog=
 
 ==_1.4.1==
- * Concurrency issues fixed with 1.4.0 release
+ * Concurrency issues in 1.4.0 release fixed
  * Added more tests
 
 ==_1.4.0.1_==
