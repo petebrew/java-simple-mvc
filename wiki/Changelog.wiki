@@ -28,7 +28,7 @@
 
 ==_1.4.1==
  * Concurrency issues fixed with 1.4.0 release
- * Added more tesets
+ * Added more tests
 
 ==_1.4.0.1_==
   * Exceptions are thrown now if you try to set a property with property type `FINAL` in !HashModel.
