@@ -20,10 +20,15 @@
 
 =Future=
 
+ * Correct serialization with events, remove final fields, add null constructors
  * Instead of interfacing features like revertable, make it so it's dynamically addable to models, so you can 'add' support for dirtyable, revertible, etc.
  * With the above model create a 'revision' support, so you can save multiple revisions of a model and revert to revisions.  Exact features are still being pondered.
 
 =Changelog=
+
+==_1.4.1==
+ * Concurrency issues fixed with 1.4.0 release
+ * Added more tesets
 
 ==_1.4.0.1_==
   * Exceptions are thrown now if you try to set a property with property type `FINAL` in !HashModel.
