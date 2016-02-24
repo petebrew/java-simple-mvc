@@ -91,5 +91,7 @@ public class LoggingMonitor implements IGlobalEventMonitor {
 			monitor.exceptionThrown(argEvent, argException);
 		}
 		log.error(I18n.getText("monitor.exception", argEvent.key), argEvent);
+		log.error(argException.getLocalizedMessage());
+		argException.printStackTrace();
 	}
 }
