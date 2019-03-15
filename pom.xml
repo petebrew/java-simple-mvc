@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.dmurph.mvc</groupId>
 	<artifactId>java-simple-mvc</artifactId>
-	<version>1.4.3-SNAPSHOT</version>
+	<version>1.4.4</version>
 	<name>java-simple-mvc</name>
 	<description>A simple mvc framework for java application and gui developers.</description>
 	<url>http://code.google.com/p/java-simple-mvc/</url>
@@ -159,16 +159,16 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	 <!--  Repository to deploy to.  When deploying make sure your .m2/settings.xml
+	 file contains the correct username and password for the repository server -->
 	<distributionManagement>
-		<repository>
-			<id>sonatype-nexus-staging</id>
-			<name>Nexus Release Repository</name>
-			<url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-		<snapshotRepository>
-			<id>sonatype-nexus-snapshots</id>
-			<name>Sonatype Nexus Snapshots</name>
-			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
+	    <repository>
+	      <id>ltrr-releases</id>
+	      <url>https://repo.ltrr.arizona.edu/ltrr-releases/</url>
+	    </repository>
+	    <snapshotRepository>
+	      <id>ltrr-snapshots</id>
+	      <url>https://repo.ltrr.arizona.edu/ltrr-snapshots/</url>
+	    </snapshotRepository>
 	</distributionManagement>
 </project>
